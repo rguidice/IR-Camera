@@ -2,7 +2,7 @@
 ; Student's Name: Ryan Guidice
 ; Date: 10/5/2019
 ; Lab #9 - Smart Security Camera
-; Name of File: Lab3.s
+; Name of File: Lab9.s
 ; Description of Program:
 ; 		IR sensor on Tiva board triggers an interrupt that sends trigger to Raspberry Pi to start recording via webcam.
 ;************************************
