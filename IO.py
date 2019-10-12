@@ -32,26 +32,27 @@ def main():
             time.sleep(5)
         else:
             print("nothing found")
-            time.sleep(5)
+            time.sleep(1)
             
 def record():
     cam = cv2.VideoCapture(0)
     
-    #Create video codec and create VideoWriter object (AVI file format, 640x480 resolution, 15fps)
+    #Create video codec and create VideoWriter object (AVI file format, 640x480 resolution, 10fps)
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    output = cv2.VideoWriter('output.avi',fourcc,15.0,(640,480))
+    output = cv2.VideoWriter('output.avi',fourcc,10.0,(640,480))
     
     #Get starting time for video time comparison
     origTime = time.process_time()
     print("Camera recording")
 
+    #Record for about 25 seconds
     while(cam.isOpened()):
         res, frame = cam.read()
         if res == True:
             output.write(frame)
             cv2.imshow("camera", frame)
             currTime = time.process_time()
-            if currTime > (origTime + 5):
+            if currTime > (origTime + 8):
                 break
         else:
             break
