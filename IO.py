@@ -16,6 +16,7 @@ import time
 import cv2
 
 IR_pin = 35
+vid_count = 0
 
 def init():
     GPIO.setmode(GPIO.BOARD)
@@ -36,23 +37,25 @@ def main():
             
 def record():
     cam = cv2.VideoCapture(0)
+    global vid_count
     
     #Create video codec and create VideoWriter object (AVI file format, 640x480 resolution, 10fps)
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    output = cv2.VideoWriter('output.avi',fourcc,10.0,(640,480))
+    output_str = 'output' + str(vid_count) + '.avi'
+    output = cv2.VideoWriter(output_str,fourcc,10.0,(640,480))
     
     #Get starting time for video time comparison
     origTime = time.process_time()
     print("Camera recording")
 
-    #Record for about 25 seconds
+    #Record for about 25 seconds (origTime + 8)
     while(cam.isOpened()):
         res, frame = cam.read()
         if res == True:
             output.write(frame)
             cv2.imshow("camera", frame)
             currTime = time.process_time()
-            if currTime > (origTime + 8):
+            if currTime > (origTime + 5):
                 break
         else:
             break
@@ -61,6 +64,7 @@ def record():
     cam.release()
     output.release()
     cv2.destroyAllWindows()
+    vid_count = vid_count+1
     return
 
 init()
