@@ -8,7 +8,7 @@ General Overview of Structure:
 3. The Raspberry Pi is connected to Port B on pin 35 and has IO.py running. IO.py constantly checks pin 35, and if it's high, will start recording via the attached webcam. It records for a pre-determined amount of time before checking if pin 35 is still high. If it is, it will continue recording, otherwise it will write the video and go back to polling pin 35.
      
 Components used: 
-- Tiva Microcontroller
+- Tiva Microcontroller (TM4C123GH6PM)
 - Raspberry Pi 3
 - Creative Labs VF0415 Webcam
 - Gowoops HC-SR501 PIR Motion Sensor (http://osoyoo.com/2017/05/27/hc-sr501-pir-motion-sensor/)
